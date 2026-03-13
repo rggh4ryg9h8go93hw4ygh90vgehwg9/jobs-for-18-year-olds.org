@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom-X | Portal</title>
+    <title>Google Classroom</title> <!-- Tab name -->
     <style>
         :root {
             --neon-cyan: #00f2ff;
@@ -15,14 +15,18 @@
             background-color: var(--bg-dark);
             color: #e0e0e0;
             font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
             overflow: hidden;
         }
+
+        /* Views */
+        .view { display: none; flex-direction: column; align-items: center; width: 100%; }
+        .active { display: flex; }
 
         h1 {
             font-size: 3rem;
@@ -37,43 +41,64 @@
             display: grid;
             grid-template-columns: repeat(2, 180px);
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
-        /* These are the actual links formatted to look like buttons */
-        .game-link {
-            padding: 20px;
+        /* Buttons and Links */
+        .btn {
+            padding: 15px 30px;
             background: rgba(20, 20, 25, 0.9);
             border: 1px solid var(--neon-cyan);
             color: white;
             text-transform: uppercase;
             text-decoration: none;
-            text-align: center;
+            cursor: pointer;
             letter-spacing: 2px;
-            font-weight: bold;
             transition: 0.3s;
             border-radius: 4px;
+            font-weight: bold;
         }
 
-        .game-link:hover {
-            box-shadow: 0 0 20px var(--neon-cyan);
-            transform: translateY(-5px);
+        .btn:hover {
+            box-shadow: 0 0 15px var(--neon-cyan);
+            transform: translateY(-3px);
             color: var(--neon-cyan);
         }
+
+        /* Stealth footer for school filters */
+        footer { position: fixed; bottom: 10px; font-size: 10px; color: #222; }
     </style>
 </head>
 <body>
 
-    <h1>Classroom-X</h1>
-    <p style="color: var(--neon-cyan); letter-spacing: 2px;">SECURE NODE ONLINE</p>
-
-    <div class="grid">
-        <!-- These link directly to the other .html files in your repo -->
-        <a href="minecraft.html" class="game-link">Minecraft</a>
-        <a href="slope.html" class="game-link">Slope</a>
-        <a href="bitlife.html" class="game-link">Bitlife</a>
-        <a href="tetris.html" class="game-link">Tetris</a>
+    <!-- HOME VIEW -->
+    <div id="home" class="view active">
+        <h1>Classroom-X</h1>
+        <p style="color: var(--neon-cyan); letter-spacing: 2px;">SECURE NODE ONLINE</p>
+        <button class="btn" onclick="showView('games')">Enter Library</button>
     </div>
 
+    <!-- GAMES VIEW -->
+    <div id="games" class="view">
+        <h1>Games</h1>
+        <div class="grid">
+            <!-- These links will open your other .html files -->
+            <a href="minecraft.html" class="btn">Minecraft</a>
+            <a href="slope.html" class="btn">Slope</a>
+            <a href="bitlife.html" class="btn">Bitlife</a>
+            <a href="tetris.html" class="btn">Tetris</a>
+        </div>
+        <button class="btn" style="margin-top: 40px; border-color: var(--neon-purple);" onclick="showView('home')">← Back Home</button>
+    </div>
+
+    <footer>Academic Mathematics Repository v2.4</footer>
+
+    <script>
+        // This function handles the "All-in-One" page swapping
+        function showView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
