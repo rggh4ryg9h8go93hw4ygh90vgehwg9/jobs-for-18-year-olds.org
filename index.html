@@ -135,22 +135,26 @@
 </head>
 <body>
 
-    <!-- HOME PAGE -->
-    <div id="home" class="page active">
-        <h1>Classroom-X</h1>
-        <div class="subtitle">System Status: Secure</div>
-        <div class="container">
-            <button class="btn" onclick="showPage('games')">Games Library</button>
-            <button class="btn" onclick="showPage('apps')">Core Apps</button>
-            <button class="btn" onclick="showPage('settings')">Settings</button>
-        </div>
+<!-- UPDATED GAMES PAGE -->
+<div id="games" class="page">
+    <h1>Games Library</h1>
+    
+    <div class="grid">
+        <!-- These now point to actual .html files in your repository -->
+        <a href="minecraft.html" class="game-card">Minecraft</a>
+        <a href="slope.html" class="game-card">Slope</a>
+        <a href="bitlife.html" class="game-card">Bitlife</a>
     </div>
+
+    <!-- This button still uses the "All-in-One" logic to go back to Home -->
+    <button class="btn back-btn" onclick="showPage('home')">← Back to Terminal</button>
+</div>
 
     <!-- GAMES PAGE -->
     <div id="games" class="page">
         <h1>Games</h1>
         <div class="grid">
-            <div class="minecraft.html">Minecraft</div>
+            <div class="game-card">Minecraft</div>
             <div class="game-card">Game 2 </div>
             <div class="game-card">Game 3 (not added yet)</div>
         </div>
