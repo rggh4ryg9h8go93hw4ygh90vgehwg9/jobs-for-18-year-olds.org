@@ -71,11 +71,15 @@
 </head>
 <body>
 
-    <!-- HOME VIEW -->
-    <div id="home" class="view active">
+ <!-- HOME PAGE -->
+    <div id="home" class="page active">
         <h1>Classroom-X</h1>
-        <p style="color: var(--neon-cyan); letter-spacing: 2px;">SECURE NODE ONLINE</p>
-        <button class="btn" onclick="showView('games')">Enter Library</button>
+        <div class="subtitle">System Status: Secure</div>
+        <div class="container">
+            <button class="btn" onclick="showPage('games')">Games Library</button>
+            <button class="btn" onclick="showPage('apps')">Core Apps</button>
+            <button class="btn" onclick="showPage('settings')">Settings</button>
+        </div>
     </div>
 
     <!-- GAMES VIEW -->
