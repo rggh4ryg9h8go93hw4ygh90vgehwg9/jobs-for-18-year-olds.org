@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Classroom</title> <!-- Tab name -->
+    <title>Google Classroom</title> 
     <style>
         :root {
             --neon-cyan: #00f2ff;
@@ -24,8 +24,14 @@
             overflow: hidden;
         }
 
-        /* Views */
-        .view { display: none; flex-direction: column; align-items: center; width: 100%; }
+        /* Views - Fixed to ensure all pages use the same class */
+        .view { 
+            display: none; 
+            flex-direction: column; 
+            align-items: center; 
+            width: 100%; 
+        }
+        
         .active { display: flex; }
 
         h1 {
@@ -35,7 +41,10 @@
             background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
         }
+
+        .subtitle { margin-bottom: 20px; color: #666; letter-spacing: 2px; }
 
         .grid {
             display: grid;
@@ -44,7 +53,12 @@
             margin-top: 20px;
         }
 
-        /* Buttons and Links */
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
         .btn {
             padding: 15px 30px;
             background: rgba(20, 20, 25, 0.9);
@@ -57,6 +71,7 @@
             transition: 0.3s;
             border-radius: 4px;
             font-weight: bold;
+            text-align: center;
         }
 
         .btn:hover {
@@ -65,20 +80,20 @@
             color: var(--neon-cyan);
         }
 
-        /* Stealth footer for school filters */
         footer { position: fixed; bottom: 10px; font-size: 10px; color: #222; }
     </style>
 </head>
 <body>
 
- <!-- HOME PAGE -->
-    <div id="home" class="page active">
+    <!-- HOME PAGE - Changed class to 'view' to match JS -->
+    <div id="home" class="view active">
         <h1>Classroom-X</h1>
         <div class="subtitle">System Status: Secure</div>
         <div class="container">
-            <button class="btn" onclick="showPage('games')">Games Library</button>
-            <button class="btn" onclick="showPage('apps')">Core Apps</button>
-            <button class="btn" onclick="showPage('settings')">Settings</button>
+            <!-- Changed showPage to showView -->
+            <button class="btn" onclick="showView('games')">Games Library</button>
+            <button class="btn" onclick="showView('apps')">Core Apps</button>
+            <button class="btn" onclick="showView('settings')">Settings</button>
         </div>
     </div>
 
@@ -86,7 +101,6 @@
     <div id="games" class="view">
         <h1>Games</h1>
         <div class="grid">
-            <!-- These links will open your other .html files -->
             <a href="minecraft.html" class="btn">Minecraft</a>
             <a href="slope.html" class="btn">Slope</a>
             <a href="bitlife.html" class="btn">Bitlife</a>
@@ -95,13 +109,31 @@
         <button class="btn" style="margin-top: 40px; border-color: var(--neon-purple);" onclick="showView('home')">← Back Home</button>
     </div>
 
+    <!-- APPS VIEW (Placeholder so buttons work) -->
+    <div id="apps" class="view">
+        <h1>Core Apps</h1>
+        <button class="btn" onclick="showView('home')">← Back Home</button>
+    </div>
+
+    <!-- SETTINGS VIEW (Placeholder so buttons work) -->
+    <div id="settings" class="view">
+        <h1>Settings</h1>
+        <button class="btn" onclick="showView('home')">← Back Home</button>
+    </div>
+
     <footer>Academic Mathematics Repository v2.4</footer>
 
     <script>
-        // This function handles the "All-in-One" page swapping
         function showView(viewId) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
+            // Hide all elements with class 'view'
+            const views = document.querySelectorAll('.view');
+            views.forEach(v => v.classList.remove('active'));
+            
+            // Show the specific view by ID
+            const selectedView = document.getElementById(viewId);
+            if (selectedView) {
+                selectedView.classList.add('active');
+            }
         }
     </script>
 </body>
